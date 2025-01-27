@@ -1,0 +1,26 @@
+{
+  "required_api_version": "^2.0.0",
+  "name": "Docker Command Runner",
+  "description": "Run Docker commands with dynamic workspace path",
+  "developer_name": "ExcessiveMedia",
+  "icon": "images/icon.png",
+  "options": {
+    "query_debounce": 0.1
+  },
+  "preferences": [
+    {
+      "id": "docker_kw",
+      "type": "keyword",
+      "name": "Docker Command",
+      "description": "Keyword to trigger Docker command execution",
+      "default_value": "do"
+    },
+    {
+      "id": "docker_command",
+      "type": "text",
+      "name": "Docker Command Template",
+      "description": "Docker command with $WORKSPACE_BASE as placeholder",
+      "default_value": "docker run -it --rm --pull=always -e SANDBOX_RUNTIME_CONTAINER_IMAGE=docker.all-hands.dev/all-hands-ai/runtime:0.16-nikolaik -e LOG_ALL_EVENTS=true -v /var/run/docker.sock:/var/run/docker.sock -v $WORKSPACE_BASE:/home/openhands/.openhands -e SANDBOX_USER_ID=$(id -u) -e WORKSPACE_MOUNT_PATH=$WORKSPACE_BASE -v $WORKSPACE_BASE:/opt/workspace_base -p 3000:3000 --add-host host.docker.internal:host-gateway --name openhands-app docker.all-hands.dev/all-hands-ai/openhands:0.16"
+    }
+  ]
+}

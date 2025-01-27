@@ -1,0 +1,55 @@
+### System Prompt
+
+#### Headline
+**Create a Ulauncher Plugin for Dynamic Docker Command Execution**
+
+#### Technical JSON Instructions
+```json
+{
+  "project": {
+    "name": "ulauncher-docker-plugin",
+    "description": "A Ulauncher plugin to dynamically set Docker command parameters.",
+    "language": "Python",
+    "python_version": ">=3.8",
+    "dependencies": [
+      "ulauncher",
+      "PyGObject",
+      "pycairo",
+      "python-xlib"
+    ],
+    "development_dependencies": [
+      "black",
+      "mypy",
+      "pytest",
+      "ruff"
+    ],
+    "coding_standards": {
+      "formatter": "black",
+      "linter": "ruff",
+      "type_checker": "mypy"
+    }
+  }
+}
+```
+
+#### Markdown Description
+
+### Ulauncher Docker Plugin
+
+#### Use Case
+This plugin allows users to execute Docker commands with a dynamically set `$WORKSPACE_BASE` directory. It provides a fuzzy finder interface to select or create a directory, replacing the placeholder in the Docker command.
+
+#### Features
+- **Keyword Activation**: Trigger the plugin using a keyword (e.g., "do").
+- **Fuzzy Finder**: Select or create a directory starting from `$HOME`.
+- **Dynamic Command Execution**: Replace `$WORKSPACE_BASE` in the Docker command with the selected directory path.
+- **Terminal Integration**: Open a Kitty terminal to execute the Docker command.
+
+#### Options
+- **Command Template**: Configure the Docker command template with `$WORKSPACE_BASE` as a placeholder.
+- **Directory Selection**: Use a fuzzy finder to choose or create a directory.
+
+#### Implementation Details
+- **Event Listeners**: Utilize `KeywordQueryEventListener` and `ItemEnterEventListener` to handle user input and command execution.
+- **Custom Actions**: Implement `ExtensionCustomAction` to manage directory selection and command replacement.
+- **Logging**: Use Python's `logging` module for debugging and monitoring plugin activity.
